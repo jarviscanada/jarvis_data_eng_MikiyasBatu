@@ -36,8 +36,6 @@ case $cmd in
 	  -e POSTGRES_PASSWORD="$db_password" \
 	  -d -v pgdata:/var/lib/postgresql/data \
 	  -p 5432:5432 postgres:9.6-alpine
-
-  # Make sure you understand what's `$?`
 	exit $?
 	;;
 
