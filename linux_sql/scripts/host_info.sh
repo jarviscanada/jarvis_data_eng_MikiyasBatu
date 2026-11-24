@@ -21,7 +21,7 @@ cpu_architecture=$(echo "$lscpu_out"  | egrep "^Architecture" | awk '{print $2}'
 cpu_model=$(echo "$lscpu_out"  | egrep "^Model name:" | awk -F: '{print $2}' | xargs)
 cpu_mhz=$(egrep -m1 "cpu MHz" /proc/cpuinfo | awk '{print $4}')
 l2_cache=$(echo "$lscpu_out"  | egrep "^L2" | awk '{print $3}' | xargs)
-total_mem=$(vmstat --unit K | tail -1 | awk '{print $4}')
+total_mem=$(grep "MemTotal" /proc/meminfo | awk '{print $2}' | xargs)
 
 #current time in `2026-11-13 19:30:20` UTC format
 timestamp=$(vmstat -t | tail -1 | awk '{print $18, $19}')
